@@ -28,4 +28,7 @@
 
 
 @interface TWTViewController : UIViewController
+
+@property (nonatomic) BOOL prefersStatusBarHidden;
+
 @end

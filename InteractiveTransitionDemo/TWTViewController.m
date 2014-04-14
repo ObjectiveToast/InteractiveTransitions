@@ -54,6 +54,12 @@
 }
 
 
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationSlide;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,6 +75,7 @@
 - (void)pushViewController
 {
     TWTViewController *viewController = [[TWTViewController alloc] init];
+    viewController.prefersStatusBarHidden = YES;
     viewController.popTransitionController = [[TWTPopTransitionController alloc] init];
     [self.navigationController pushViewController:viewController animated:YES];
 }

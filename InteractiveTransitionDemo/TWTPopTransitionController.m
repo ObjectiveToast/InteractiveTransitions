@@ -26,6 +26,8 @@
 
 #import "TWTPopTransitionController.h"
 
+#import "TWTViewController.h"
+
 
 @implementation TWTPopTransitionController
 @synthesize interactive = _interactive;
@@ -101,19 +103,26 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    TWTViewController *toViewController = (TWTViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     toViewController.view.frame = [transitionContext finalFrameForViewController:toViewController];
     [toViewController.view layoutIfNeeded];
 
     UIView *containerView = [transitionContext containerView];
     [containerView insertSubview:toViewController.view atIndex:0];
 
-    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    TWTViewController *fromViewController = (TWTViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 
     NSTimeInterval duration = [self transitionDuration:transitionContext];
+
+    toViewController.prefersStatusBarHidden = YES;
+    [toViewController setNeedsStatusBarAppearanceUpdate];
+
     [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
         fromViewController.view.transform = CGAffineTransformMakeScale(0.3, 0.3);
         fromViewController.view.alpha = 0.0;
+
+        toViewController.prefersStatusBarHidden = NO;
+        [toViewController setNeedsStatusBarAppearanceUpdate];
     } completion:^(BOOL finished) {
         BOOL completed = ![transitionContext transitionWasCancelled];
         if (completed) {
