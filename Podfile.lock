@@ -1,0 +1,15 @@
+PODS:
+  - TWTToast/UIKit/ViewControllerTransitions (0.7)
+
+DEPENDENCIES:
+  - TWTToast/UIKit/ViewControllerTransitions (from `https://github.com/twotoasters/Toast.git`, commit `6045752924`)
+
+EXTERNAL SOURCES:
+  TWTToast:
+    :commit: 6045752924
+    :git: https://github.com/twotoasters/Toast.git
+
+SPEC CHECKSUMS:
+  TWTToast: 6e29ab34402f7a57b8443aa1d476c98d74a29ce1
+
+COCOAPODS: 0.31.1
